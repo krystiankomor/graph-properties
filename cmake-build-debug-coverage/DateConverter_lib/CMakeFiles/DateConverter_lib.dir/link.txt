@@ -1,0 +1,2 @@
+/usr/bin/ar qc libDateConverter_lib.a CMakeFiles/DateConverter_lib.dir/Gregorian.cpp.o CMakeFiles/DateConverter_lib.dir/Julian.cpp.o
+/usr/bin/ranlib libDateConverter_lib.a

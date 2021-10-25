@@ -1,0 +1,35 @@
+        -:    0:Source:/home/krystian/development/study/algorytmy/project1/DateConverter_lib/Gregorian.h
+        -:    0:Graph:/home/krystian/development/study/algorytmy/project1/cmake-build-debug-coverage/Google_tests/CMakeFiles/Google_Tests_run.dir/ConverterTests.cpp.gcno
+        -:    0:Data:/home/krystian/development/study/algorytmy/project1/cmake-build-debug-coverage/Google_tests/CMakeFiles/Google_Tests_run.dir/ConverterTests.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#ifndef UNITTESTING_TUTORIAL_GREGORIAN_H_
+        -:    2:#define UNITTESTING_TUTORIAL_GREGORIAN_H_
+        -:    3:
+        -:    4:
+        -:    5:#define SHORTEST_MONTH 28
+        -:    6:#define MAX_MONTH_LENGTH 31
+        -:    7:
+        -:    8:class GregorianDate{
+        -:    9:protected:
+        -:   10:    int year = 1;
+        -:   11:    int month = 1;
+        -:   12:    int day = 1;
+        -:   13:public:
+function _ZN13GregorianDateC2Ev called 18 returned 100% blocks executed 100%
+       18:   14:    GregorianDate() {};
+        -:   15:
+function _ZN13GregorianDate8SetMonthEi called 18 returned 100% blocks executed 100%
+       18:   16:    void SetMonth(int m) {month = m;}
+function _ZN13GregorianDate6SetDayEi called 18 returned 100% blocks executed 100%
+       18:   17:    void SetDay  (int d) {day = d;}
+function _ZN13GregorianDate7SetYearEi called 18 returned 100% blocks executed 100%
+       18:   18:    void SetYear (int y) {year = y;}
+        -:   19:
+        -:   20:    static bool isLeapYear(int year);
+        -:   21:    static int LastMonthDay(int month, int year);
+        -:   22:
+        -:   23:    int getAbsoluteDate();
+        -:   24:};
+        -:   25:
+        -:   26:
+        -:   27:#endif //UNITTESTING_TUTORIAL_GREGORIAN_H_

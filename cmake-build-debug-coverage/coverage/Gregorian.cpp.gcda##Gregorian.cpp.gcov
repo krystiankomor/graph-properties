@@ -1,0 +1,99 @@
+        -:    0:Source:/home/krystian/development/study/algorytmy/project1/DateConverter_lib/Gregorian.cpp
+        -:    0:Graph:/home/krystian/development/study/algorytmy/project1/cmake-build-debug-coverage/DateConverter_lib/CMakeFiles/DateConverter_lib.dir/Gregorian.cpp.gcno
+        -:    0:Data:/home/krystian/development/study/algorytmy/project1/cmake-build-debug-coverage/DateConverter_lib/CMakeFiles/DateConverter_lib.dir/Gregorian.cpp.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by krystian on 25.10.2021.
+        -:    3://
+        -:    4:
+        -:    5:
+        -:    6:#include "Gregorian.h"
+        -:    7:
+function _ZN13GregorianDate15getAbsoluteDateEv called 18 returned 100% blocks executed 100%
+       18:    8:int GregorianDate::getAbsoluteDate () {
+        -:    9:
+       18:   10:    if ((year < 1) || (day < 1) || (day > MAX_MONTH_LENGTH) || (month < 1) || (month > 12)) return 0;
+       18:   10-block  0
+branch  0 taken 18 (fallthrough)
+branch  1 taken 0
+       18:   10-block  1
+branch  2 taken 15 (fallthrough)
+branch  3 taken 3
+       15:   10-block  2
+branch  4 taken 15 (fallthrough)
+branch  5 taken 0
+       15:   10-block  3
+branch  6 taken 15 (fallthrough)
+branch  7 taken 0
+       15:   10-block  4
+branch  8 taken 0 (fallthrough)
+branch  9 taken 15
+        3:   10-block  5
+        -:   11:
+       15:   12:    int N = day;           // days this month
+       66:   13:    for (int m = month - 1; m > 0; m--)
+       15:   13-block  0
+       66:   13-block  1
+branch  0 taken 51 (fallthrough)
+branch  1 taken 15
+       51:   14:        N = N + LastMonthDay(m, year);
+       51:   14-block  0
+call    0 returned 51
+        -:   15:    return
+        -:   16:            (N                    // days this year
+       15:   17:             + 365 * (year - 1)   // days in previous years ignoring leap days
+       15:   18:             + (year - 1) / 4       // JulianCalendar leap days before this year...
+       15:   19:             - (year - 1) / 100     // ...minus prior century years...
+       15:   20:             + (year - 1) / 400);   // ...plus prior years divisible by 400
+       15:   20-block  0
+        -:   21:}
+        -:   22:
+function _ZN13GregorianDate12LastMonthDayEii called 51 returned 100% blocks executed 100%
+       51:   23:int GregorianDate::LastMonthDay(int month, int year)
+        -:   24:{
+       51:   25:    switch (month) {
+       51:   25-block  0
+branch  0 taken 12
+branch  1 taken 12
+branch  2 taken 27
+       12:   26:        case 2:
+       12:   27:            return (isLeapYear(year) ? 29 : SHORTEST_MONTH);
+       12:   27-block  0
+call    0 returned 12
+branch  1 taken 3 (fallthrough)
+branch  2 taken 9
+        3:   27-block  1
+        9:   27-block  2
+       12:   27-block  3
+       12:   28:        case 4:
+        -:   29:        case 6:
+        -:   30:        case 9:
+        -:   31:        case 11:
+       12:   32:            return 30;
+       12:   32-block  0
+       27:   33:        default:
+       27:   34:            return 31;
+       27:   34-block  0
+        -:   35:    }
+        -:   36:}
+        -:   37:
+function _ZN13GregorianDate10isLeapYearEi called 12 returned 100% blocks executed 100%
+       12:   38:bool GregorianDate::isLeapYear(int year) {
+        -:   39:
+       12:   40:    bool result = (((year % 4) == 0) && ((year % 100) != 0))
+       12:   40-block  0
+branch  0 taken 9 (fallthrough)
+branch  1 taken 3
+       24:   41:                  || ((year % 400) == 0);
+       12:   41-block  0
+branch  0 taken 12 (fallthrough)
+branch  1 taken 0
+        9:   41-block  1
+branch  2 taken 0 (fallthrough)
+branch  3 taken 9
+        3:   41-block  2
+        9:   41-block  3
+        -:   42:
+       12:   43:    return result;
+       12:   43-block  0
+        -:   44:}

@@ -1,0 +1,105 @@
+        -:    0:Source:/home/krystian/development/study/algorytmy/project1/Google_tests/AbsoluteDateTest.cpp
+        -:    0:Graph:/home/krystian/development/study/algorytmy/project1/cmake-build-debug-coverage/Google_tests/CMakeFiles/Google_Tests_run.dir/AbsoluteDateTest.cpp.gcno
+        -:    0:Data:/home/krystian/development/study/algorytmy/project1/cmake-build-debug-coverage/Google_tests/CMakeFiles/Google_Tests_run.dir/AbsoluteDateTest.cpp.gcda
+        -:    0:Runs:1
+        -:    1://
+        -:    2:// Created by krystian on 25.10.2021.
+        -:    3://
+        -:    4:
+        -:    5:#include "gtest/gtest.h"
+        -:    6:#include "Gregorian.h"
+        -:    7:
+        -:    8:
+       12:    9:TEST(AbsoluteDateTestSuite, ExampleDate){ // 12/2/2020 -> 737761
+        3:   10:    GregorianDate gregDate;
+        3:   11:    gregDate.SetMonth(12);
+        3:   12:    gregDate.SetDay(2);
+        3:   13:    gregDate.SetYear(2020);
+        -:   14:
+       3*:   15:    EXPECT_EQ(gregDate.getAbsoluteDate(),737761);
+        3:   16:}
+------------------
+_ZN38AbsoluteDateTestSuite_ExampleDate_TestC2Ev:
+function _ZN38AbsoluteDateTestSuite_ExampleDate_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:    9:TEST(AbsoluteDateTestSuite, ExampleDate){ // 12/2/2020 -> 737761
+        3:    9-block  0
+call    0 returned 3
+------------------
+_ZN38AbsoluteDateTestSuite_ExampleDate_TestD0Ev:
+function _ZN38AbsoluteDateTestSuite_ExampleDate_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:    9:TEST(AbsoluteDateTestSuite, ExampleDate){ // 12/2/2020 -> 737761
+        3:    9-block  0
+call    0 returned 3
+call    1 returned 3
+------------------
+_ZN38AbsoluteDateTestSuite_ExampleDate_TestD2Ev:
+function _ZN38AbsoluteDateTestSuite_ExampleDate_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:    9:TEST(AbsoluteDateTestSuite, ExampleDate){ // 12/2/2020 -> 737761
+        3:    9-block  0
+call    0 returned 3
+------------------
+_ZN38AbsoluteDateTestSuite_ExampleDate_Test8TestBodyEv:
+function _ZN38AbsoluteDateTestSuite_ExampleDate_Test8TestBodyEv called 3 returned 100% blocks executed 35%
+        3:    9:TEST(AbsoluteDateTestSuite, ExampleDate){ // 12/2/2020 -> 737761
+        3:   10:    GregorianDate gregDate;
+        3:   10-block  0
+call    0 returned 3
+        3:   11:    gregDate.SetMonth(12);
+call    0 returned 3
+        3:   12:    gregDate.SetDay(2);
+call    0 returned 3
+        3:   13:    gregDate.SetYear(2020);
+call    0 returned 3
+        -:   14:
+       3*:   15:    EXPECT_EQ(gregDate.getAbsoluteDate(),737761);
+call    0 returned 3
+branch  1 taken 3 (fallthrough)
+branch  2 taken 0 (throw)
+        3:   15-block  0
+call    3 returned 3
+branch  4 taken 3 (fallthrough)
+branch  5 taken 0 (throw)
+        3:   15-block  1
+call    6 returned 3
+branch  7 taken 0 (fallthrough)
+branch  8 taken 3
+    %%%%%:   15-block  2
+call    9 never executed
+branch 10 never executed
+branch 11 never executed
+    %%%%%:   15-block  3
+call   12 never executed
+call   13 never executed
+branch 14 never executed
+branch 15 never executed
+    %%%%%:   15-block  4
+call   16 never executed
+branch 17 never executed
+branch 18 never executed
+    %%%%%:   15-block  5
+call   19 never executed
+call   20 never executed
+        3:   15-block  6
+call   21 returned 3
+    $$$$$:   15-block  7
+    $$$$$:   15-block  8
+    $$$$$:   15-block  9
+call   22 never executed
+    $$$$$:   15-block 10
+    $$$$$:   15-block 11
+call   23 never executed
+    $$$$$:   15-block 12
+    $$$$$:   15-block 13
+call   24 never executed
+        3:   16:}
+------------------
+        -:   17:
+        -:   18:
+       12:   19:TEST(AbsoluteDateTestSuite, IncorrectDate){ // 12/0/2020 -> 0
+        3:   20:    GregorianDate gregDate;
+        3:   21:    gregDate.SetMonth(12);
+        3:   22:    gregDate.SetDay(0);
+        3:   23:    gregDate.SetYear(2020);
+        -:   24:
+       3*:   25:    ASSERT_EQ(gregDate.getAbsoluteDate(),0);
+        -:   26:}

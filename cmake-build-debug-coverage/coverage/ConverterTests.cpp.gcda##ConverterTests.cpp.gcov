@@ -1,0 +1,702 @@
+        -:    0:Source:/home/krystian/development/study/algorytmy/project1/Google_tests/ConverterTests.cpp
+        -:    0:Graph:/home/krystian/development/study/algorytmy/project1/cmake-build-debug-coverage/Google_tests/CMakeFiles/Google_Tests_run.dir/ConverterTests.cpp.gcno
+        -:    0:Data:/home/krystian/development/study/algorytmy/project1/cmake-build-debug-coverage/Google_tests/CMakeFiles/Google_Tests_run.dir/ConverterTests.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "gtest/gtest.h"
+        -:    2:#include "Julian.h"
+        -:    3:#include "Gregorian.h"
+        -:    4:
+        -:    5:
+        -:    6:class DateConverterFixture : public ::testing::Test {
+        -:    7:
+        -:    8:protected:
+function _ZN20DateConverterFixture5SetUpEv called 12 returned 100% blocks executed 100%
+       12:    9:    virtual void SetUp()
+        -:   10:    {
+       12:   11:        gregDate = new GregorianDate();
+       12:   11-block  0
+call    0 returned 12
+call    1 returned 12
+       12:   12:        julDate = new JulianDate();
+call    0 returned 12
+call    1 returned 12
+       12:   13:    }
+        -:   14:
+function _ZN20DateConverterFixture8TearDownEv called 12 returned 100% blocks executed 100%
+       12:   15:    virtual void TearDown() {
+       12:   16:        delete gregDate;
+       12:   16-block  0
+branch  0 taken 12 (fallthrough)
+branch  1 taken 0
+       12:   16-block  1
+call    2 returned 12
+       12:   17:        delete julDate;
+       12:   17-block  0
+branch  0 taken 12 (fallthrough)
+branch  1 taken 0
+       12:   17-block  1
+call    2 returned 12
+       12:   18:    }
+        -:   19:
+        -:   20:    GregorianDate * gregDate;
+        -:   21:    JulianDate * julDate;
+        -:   22:};
+        -:   23:
+       12:   24:TEST_F(DateConverterFixture, FirstDayEver){ // 1/1/1 -> 1/3/1
+        -:   25:
+        3:   26:gregDate->SetMonth(1);
+        3:   27:gregDate->SetDay(1);
+        3:   28:gregDate->SetYear(1);
+        -:   29:
+        3:   30:int absGregDate = gregDate->getAbsoluteDate();
+        3:   31:julDate->CalcJulianDate(absGregDate);
+        -:   32:
+       3*:   33:EXPECT_EQ(julDate->getMonth(),1);
+       3*:   34:EXPECT_EQ(julDate->getDay(),3);
+       3*:   35:EXPECT_EQ(julDate->getYear(),1);
+        -:   36:
+        3:   37:}
+------------------
+_ZN38DateConverterFixture_FirstDayEver_TestC2Ev:
+function _ZN38DateConverterFixture_FirstDayEver_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:   24:TEST_F(DateConverterFixture, FirstDayEver){ // 1/1/1 -> 1/3/1
+        3:   24-block  0
+call    0 returned 3
+------------------
+_ZN38DateConverterFixture_FirstDayEver_TestD0Ev:
+function _ZN38DateConverterFixture_FirstDayEver_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:   24:TEST_F(DateConverterFixture, FirstDayEver){ // 1/1/1 -> 1/3/1
+        3:   24-block  0
+call    0 returned 3
+call    1 returned 3
+------------------
+_ZN38DateConverterFixture_FirstDayEver_TestD2Ev:
+function _ZN38DateConverterFixture_FirstDayEver_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:   24:TEST_F(DateConverterFixture, FirstDayEver){ // 1/1/1 -> 1/3/1
+        3:   24-block  0
+call    0 returned 3
+------------------
+_ZN38DateConverterFixture_FirstDayEver_Test8TestBodyEv:
+function _ZN38DateConverterFixture_FirstDayEver_Test8TestBodyEv called 3 returned 100% blocks executed 27%
+        3:   24:TEST_F(DateConverterFixture, FirstDayEver){ // 1/1/1 -> 1/3/1
+        -:   25:
+        3:   26:gregDate->SetMonth(1);
+        3:   26-block  0
+call    0 returned 3
+        3:   27:gregDate->SetDay(1);
+call    0 returned 3
+        3:   28:gregDate->SetYear(1);
+call    0 returned 3
+        -:   29:
+        3:   30:int absGregDate = gregDate->getAbsoluteDate();
+call    0 returned 3
+        3:   31:julDate->CalcJulianDate(absGregDate);
+call    0 returned 3
+        -:   32:
+       3*:   33:EXPECT_EQ(julDate->getMonth(),1);
+call    0 returned 3
+call    1 returned 3
+branch  2 taken 3 (fallthrough)
+branch  3 taken 0 (throw)
+        3:   33-block  0
+call    4 returned 3
+branch  5 taken 0 (fallthrough)
+branch  6 taken 3
+    %%%%%:   33-block  1
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   33-block  2
+call   10 never executed
+call   11 never executed
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   33-block  3
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   33-block  4
+call   17 never executed
+call   18 never executed
+        3:   33-block  5
+call   19 returned 3
+    $$$$$:   33-block  6
+    $$$$$:   33-block  7
+    $$$$$:   33-block  8
+call   20 never executed
+    $$$$$:   33-block  9
+    $$$$$:   33-block 10
+call   21 never executed
+    $$$$$:   33-block 11
+    $$$$$:   33-block 12
+call   22 never executed
+       3*:   34:EXPECT_EQ(julDate->getDay(),3);
+call    0 returned 3
+call    1 returned 3
+branch  2 taken 3 (fallthrough)
+branch  3 taken 0 (throw)
+        3:   34-block  0
+call    4 returned 3
+branch  5 taken 0 (fallthrough)
+branch  6 taken 3
+    %%%%%:   34-block  1
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   34-block  2
+call   10 never executed
+call   11 never executed
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   34-block  3
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   34-block  4
+call   17 never executed
+call   18 never executed
+        3:   34-block  5
+call   19 returned 3
+    $$$$$:   34-block  6
+    $$$$$:   34-block  7
+    $$$$$:   34-block  8
+call   20 never executed
+    $$$$$:   34-block  9
+    $$$$$:   34-block 10
+call   21 never executed
+    $$$$$:   34-block 11
+    $$$$$:   34-block 12
+call   22 never executed
+       3*:   35:EXPECT_EQ(julDate->getYear(),1);
+call    0 returned 3
+call    1 returned 3
+branch  2 taken 3 (fallthrough)
+branch  3 taken 0 (throw)
+        3:   35-block  0
+call    4 returned 3
+branch  5 taken 0 (fallthrough)
+branch  6 taken 3
+    %%%%%:   35-block  1
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   35-block  2
+call   10 never executed
+call   11 never executed
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   35-block  3
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   35-block  4
+call   17 never executed
+call   18 never executed
+        3:   35-block  5
+call   19 returned 3
+    $$$$$:   35-block  6
+    $$$$$:   35-block  7
+    $$$$$:   35-block  8
+call   20 never executed
+    $$$$$:   35-block  9
+    $$$$$:   35-block 10
+call   21 never executed
+    $$$$$:   35-block 11
+    $$$$$:   35-block 12
+call   22 never executed
+        -:   36:
+        3:   37:}
+------------------
+        -:   38:
+       12:   39:TEST_F(DateConverterFixture, PlusOneDiff){ // 3/1/100 -> 3/2/100
+        -:   40:
+        3:   41:gregDate->SetMonth(3);
+        3:   42:gregDate->SetDay(1);
+        3:   43:gregDate->SetYear(100);
+        -:   44:
+        3:   45:int absGregDate = gregDate->getAbsoluteDate();
+        3:   46:julDate->CalcJulianDate(absGregDate);
+        -:   47:
+       3*:   48:EXPECT_EQ(julDate->getMonth(),3);
+       3*:   49:EXPECT_EQ(julDate->getDay(),2);
+       3*:   50:EXPECT_EQ(julDate->getYear(),100);
+        3:   51:}
+------------------
+_ZN37DateConverterFixture_PlusOneDiff_TestC2Ev:
+function _ZN37DateConverterFixture_PlusOneDiff_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:   39:TEST_F(DateConverterFixture, PlusOneDiff){ // 3/1/100 -> 3/2/100
+        3:   39-block  0
+call    0 returned 3
+------------------
+_ZN37DateConverterFixture_PlusOneDiff_TestD0Ev:
+function _ZN37DateConverterFixture_PlusOneDiff_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:   39:TEST_F(DateConverterFixture, PlusOneDiff){ // 3/1/100 -> 3/2/100
+        3:   39-block  0
+call    0 returned 3
+call    1 returned 3
+------------------
+_ZN37DateConverterFixture_PlusOneDiff_TestD2Ev:
+function _ZN37DateConverterFixture_PlusOneDiff_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:   39:TEST_F(DateConverterFixture, PlusOneDiff){ // 3/1/100 -> 3/2/100
+        3:   39-block  0
+call    0 returned 3
+------------------
+_ZN37DateConverterFixture_PlusOneDiff_Test8TestBodyEv:
+function _ZN37DateConverterFixture_PlusOneDiff_Test8TestBodyEv called 3 returned 100% blocks executed 27%
+        3:   39:TEST_F(DateConverterFixture, PlusOneDiff){ // 3/1/100 -> 3/2/100
+        -:   40:
+        3:   41:gregDate->SetMonth(3);
+        3:   41-block  0
+call    0 returned 3
+        3:   42:gregDate->SetDay(1);
+call    0 returned 3
+        3:   43:gregDate->SetYear(100);
+call    0 returned 3
+        -:   44:
+        3:   45:int absGregDate = gregDate->getAbsoluteDate();
+call    0 returned 3
+        3:   46:julDate->CalcJulianDate(absGregDate);
+call    0 returned 3
+        -:   47:
+       3*:   48:EXPECT_EQ(julDate->getMonth(),3);
+call    0 returned 3
+call    1 returned 3
+branch  2 taken 3 (fallthrough)
+branch  3 taken 0 (throw)
+        3:   48-block  0
+call    4 returned 3
+branch  5 taken 0 (fallthrough)
+branch  6 taken 3
+    %%%%%:   48-block  1
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   48-block  2
+call   10 never executed
+call   11 never executed
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   48-block  3
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   48-block  4
+call   17 never executed
+call   18 never executed
+        3:   48-block  5
+call   19 returned 3
+    $$$$$:   48-block  6
+    $$$$$:   48-block  7
+    $$$$$:   48-block  8
+call   20 never executed
+    $$$$$:   48-block  9
+    $$$$$:   48-block 10
+call   21 never executed
+    $$$$$:   48-block 11
+    $$$$$:   48-block 12
+call   22 never executed
+       3*:   49:EXPECT_EQ(julDate->getDay(),2);
+call    0 returned 3
+call    1 returned 3
+branch  2 taken 3 (fallthrough)
+branch  3 taken 0 (throw)
+        3:   49-block  0
+call    4 returned 3
+branch  5 taken 0 (fallthrough)
+branch  6 taken 3
+    %%%%%:   49-block  1
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   49-block  2
+call   10 never executed
+call   11 never executed
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   49-block  3
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   49-block  4
+call   17 never executed
+call   18 never executed
+        3:   49-block  5
+call   19 returned 3
+    $$$$$:   49-block  6
+    $$$$$:   49-block  7
+    $$$$$:   49-block  8
+call   20 never executed
+    $$$$$:   49-block  9
+    $$$$$:   49-block 10
+call   21 never executed
+    $$$$$:   49-block 11
+    $$$$$:   49-block 12
+call   22 never executed
+       3*:   50:EXPECT_EQ(julDate->getYear(),100);
+call    0 returned 3
+call    1 returned 3
+branch  2 taken 3 (fallthrough)
+branch  3 taken 0 (throw)
+        3:   50-block  0
+call    4 returned 3
+branch  5 taken 0 (fallthrough)
+branch  6 taken 3
+    %%%%%:   50-block  1
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   50-block  2
+call   10 never executed
+call   11 never executed
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   50-block  3
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   50-block  4
+call   17 never executed
+call   18 never executed
+        3:   50-block  5
+call   19 returned 3
+    $$$$$:   50-block  6
+    $$$$$:   50-block  7
+    $$$$$:   50-block  8
+call   20 never executed
+    $$$$$:   50-block  9
+    $$$$$:   50-block 10
+call   21 never executed
+    $$$$$:   50-block 11
+    $$$$$:   50-block 12
+call   22 never executed
+        3:   51:}
+------------------
+        -:   52:
+       12:   53:TEST_F(DateConverterFixture, MinusOne_Leap){ // 3/1/300 -> 2/29/300
+        -:   54:
+        3:   55:gregDate->SetMonth(3);
+        3:   56:gregDate->SetDay(1);
+        3:   57:gregDate->SetYear(300);
+        -:   58:
+        3:   59:int absGregDate = gregDate->getAbsoluteDate();
+        3:   60:julDate->CalcJulianDate(absGregDate);
+        -:   61:
+       3*:   62:EXPECT_EQ(julDate->getMonth(),2);
+       3*:   63:EXPECT_EQ(julDate->getDay(),29);
+       3*:   64:EXPECT_EQ(julDate->getYear(),300);
+        3:   65:}
+------------------
+_ZN39DateConverterFixture_MinusOne_Leap_TestC2Ev:
+function _ZN39DateConverterFixture_MinusOne_Leap_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:   53:TEST_F(DateConverterFixture, MinusOne_Leap){ // 3/1/300 -> 2/29/300
+        3:   53-block  0
+call    0 returned 3
+------------------
+_ZN39DateConverterFixture_MinusOne_Leap_TestD0Ev:
+function _ZN39DateConverterFixture_MinusOne_Leap_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:   53:TEST_F(DateConverterFixture, MinusOne_Leap){ // 3/1/300 -> 2/29/300
+        3:   53-block  0
+call    0 returned 3
+call    1 returned 3
+------------------
+_ZN39DateConverterFixture_MinusOne_Leap_TestD2Ev:
+function _ZN39DateConverterFixture_MinusOne_Leap_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:   53:TEST_F(DateConverterFixture, MinusOne_Leap){ // 3/1/300 -> 2/29/300
+        3:   53-block  0
+call    0 returned 3
+------------------
+_ZN39DateConverterFixture_MinusOne_Leap_Test8TestBodyEv:
+function _ZN39DateConverterFixture_MinusOne_Leap_Test8TestBodyEv called 3 returned 100% blocks executed 27%
+        3:   53:TEST_F(DateConverterFixture, MinusOne_Leap){ // 3/1/300 -> 2/29/300
+        -:   54:
+        3:   55:gregDate->SetMonth(3);
+        3:   55-block  0
+call    0 returned 3
+        3:   56:gregDate->SetDay(1);
+call    0 returned 3
+        3:   57:gregDate->SetYear(300);
+call    0 returned 3
+        -:   58:
+        3:   59:int absGregDate = gregDate->getAbsoluteDate();
+call    0 returned 3
+        3:   60:julDate->CalcJulianDate(absGregDate);
+call    0 returned 3
+        -:   61:
+       3*:   62:EXPECT_EQ(julDate->getMonth(),2);
+call    0 returned 3
+call    1 returned 3
+branch  2 taken 3 (fallthrough)
+branch  3 taken 0 (throw)
+        3:   62-block  0
+call    4 returned 3
+branch  5 taken 0 (fallthrough)
+branch  6 taken 3
+    %%%%%:   62-block  1
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   62-block  2
+call   10 never executed
+call   11 never executed
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   62-block  3
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   62-block  4
+call   17 never executed
+call   18 never executed
+        3:   62-block  5
+call   19 returned 3
+    $$$$$:   62-block  6
+    $$$$$:   62-block  7
+    $$$$$:   62-block  8
+call   20 never executed
+    $$$$$:   62-block  9
+    $$$$$:   62-block 10
+call   21 never executed
+    $$$$$:   62-block 11
+    $$$$$:   62-block 12
+call   22 never executed
+       3*:   63:EXPECT_EQ(julDate->getDay(),29);
+call    0 returned 3
+call    1 returned 3
+branch  2 taken 3 (fallthrough)
+branch  3 taken 0 (throw)
+        3:   63-block  0
+call    4 returned 3
+branch  5 taken 0 (fallthrough)
+branch  6 taken 3
+    %%%%%:   63-block  1
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   63-block  2
+call   10 never executed
+call   11 never executed
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   63-block  3
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   63-block  4
+call   17 never executed
+call   18 never executed
+        3:   63-block  5
+call   19 returned 3
+    $$$$$:   63-block  6
+    $$$$$:   63-block  7
+    $$$$$:   63-block  8
+call   20 never executed
+    $$$$$:   63-block  9
+    $$$$$:   63-block 10
+call   21 never executed
+    $$$$$:   63-block 11
+    $$$$$:   63-block 12
+call   22 never executed
+       3*:   64:EXPECT_EQ(julDate->getYear(),300);
+call    0 returned 3
+call    1 returned 3
+branch  2 taken 3 (fallthrough)
+branch  3 taken 0 (throw)
+        3:   64-block  0
+call    4 returned 3
+branch  5 taken 0 (fallthrough)
+branch  6 taken 3
+    %%%%%:   64-block  1
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   64-block  2
+call   10 never executed
+call   11 never executed
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   64-block  3
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   64-block  4
+call   17 never executed
+call   18 never executed
+        3:   64-block  5
+call   19 returned 3
+    $$$$$:   64-block  6
+    $$$$$:   64-block  7
+    $$$$$:   64-block  8
+call   20 never executed
+    $$$$$:   64-block  9
+    $$$$$:   64-block 10
+call   21 never executed
+    $$$$$:   64-block 11
+    $$$$$:   64-block 12
+call   22 never executed
+        3:   65:}
+------------------
+        -:   66:
+        -:   67:
+       12:   68:TEST_F(DateConverterFixture, PlusFour_Leap){ // 3/1/900 -> 2/25/900
+        -:   69:
+        3:   70:gregDate->SetMonth(3);
+        3:   71:gregDate->SetDay(1);
+        3:   72:gregDate->SetYear(900);
+        -:   73:
+        3:   74:int absGregDate = gregDate->getAbsoluteDate();
+        3:   75:julDate->CalcJulianDate(absGregDate);
+        -:   76:
+       3*:   77:EXPECT_EQ(julDate->getMonth(),2);
+       3*:   78:EXPECT_EQ(julDate->getDay(),25);
+       3*:   79:EXPECT_EQ(julDate->getYear(),900);
+        3:   80:}
+------------------
+_ZN39DateConverterFixture_PlusFour_Leap_TestC2Ev:
+function _ZN39DateConverterFixture_PlusFour_Leap_TestC2Ev called 3 returned 100% blocks executed 100%
+        3:   68:TEST_F(DateConverterFixture, PlusFour_Leap){ // 3/1/900 -> 2/25/900
+        3:   68-block  0
+call    0 returned 3
+------------------
+_ZN39DateConverterFixture_PlusFour_Leap_TestD0Ev:
+function _ZN39DateConverterFixture_PlusFour_Leap_TestD0Ev called 3 returned 100% blocks executed 100%
+        3:   68:TEST_F(DateConverterFixture, PlusFour_Leap){ // 3/1/900 -> 2/25/900
+        3:   68-block  0
+call    0 returned 3
+call    1 returned 3
+------------------
+_ZN39DateConverterFixture_PlusFour_Leap_TestD2Ev:
+function _ZN39DateConverterFixture_PlusFour_Leap_TestD2Ev called 3 returned 100% blocks executed 100%
+        3:   68:TEST_F(DateConverterFixture, PlusFour_Leap){ // 3/1/900 -> 2/25/900
+        3:   68-block  0
+call    0 returned 3
+------------------
+_ZN39DateConverterFixture_PlusFour_Leap_Test8TestBodyEv:
+function _ZN39DateConverterFixture_PlusFour_Leap_Test8TestBodyEv called 3 returned 100% blocks executed 27%
+        3:   68:TEST_F(DateConverterFixture, PlusFour_Leap){ // 3/1/900 -> 2/25/900
+        -:   69:
+        3:   70:gregDate->SetMonth(3);
+        3:   70-block  0
+call    0 returned 3
+        3:   71:gregDate->SetDay(1);
+call    0 returned 3
+        3:   72:gregDate->SetYear(900);
+call    0 returned 3
+        -:   73:
+        3:   74:int absGregDate = gregDate->getAbsoluteDate();
+call    0 returned 3
+        3:   75:julDate->CalcJulianDate(absGregDate);
+call    0 returned 3
+        -:   76:
+       3*:   77:EXPECT_EQ(julDate->getMonth(),2);
+call    0 returned 3
+call    1 returned 3
+branch  2 taken 3 (fallthrough)
+branch  3 taken 0 (throw)
+        3:   77-block  0
+call    4 returned 3
+branch  5 taken 0 (fallthrough)
+branch  6 taken 3
+    %%%%%:   77-block  1
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   77-block  2
+call   10 never executed
+call   11 never executed
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   77-block  3
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   77-block  4
+call   17 never executed
+call   18 never executed
+        3:   77-block  5
+call   19 returned 3
+    $$$$$:   77-block  6
+    $$$$$:   77-block  7
+    $$$$$:   77-block  8
+call   20 never executed
+    $$$$$:   77-block  9
+    $$$$$:   77-block 10
+call   21 never executed
+    $$$$$:   77-block 11
+    $$$$$:   77-block 12
+call   22 never executed
+       3*:   78:EXPECT_EQ(julDate->getDay(),25);
+call    0 returned 3
+call    1 returned 3
+branch  2 taken 3 (fallthrough)
+branch  3 taken 0 (throw)
+        3:   78-block  0
+call    4 returned 3
+branch  5 taken 0 (fallthrough)
+branch  6 taken 3
+    %%%%%:   78-block  1
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   78-block  2
+call   10 never executed
+call   11 never executed
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   78-block  3
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   78-block  4
+call   17 never executed
+call   18 never executed
+        3:   78-block  5
+call   19 returned 3
+    $$$$$:   78-block  6
+    $$$$$:   78-block  7
+    $$$$$:   78-block  8
+call   20 never executed
+    $$$$$:   78-block  9
+    $$$$$:   78-block 10
+call   21 never executed
+    $$$$$:   78-block 11
+    $$$$$:   78-block 12
+call   22 never executed
+       3*:   79:EXPECT_EQ(julDate->getYear(),900);
+call    0 returned 3
+call    1 returned 3
+branch  2 taken 3 (fallthrough)
+branch  3 taken 0 (throw)
+        3:   79-block  0
+call    4 returned 3
+branch  5 taken 0 (fallthrough)
+branch  6 taken 3
+    %%%%%:   79-block  1
+call    7 never executed
+branch  8 never executed
+branch  9 never executed
+    %%%%%:   79-block  2
+call   10 never executed
+call   11 never executed
+branch 12 never executed
+branch 13 never executed
+    %%%%%:   79-block  3
+call   14 never executed
+branch 15 never executed
+branch 16 never executed
+    %%%%%:   79-block  4
+call   17 never executed
+call   18 never executed
+        3:   79-block  5
+call   19 returned 3
+    $$$$$:   79-block  6
+    $$$$$:   79-block  7
+    $$$$$:   79-block  8
+call   20 never executed
+    $$$$$:   79-block  9
+    $$$$$:   79-block 10
+call   21 never executed
+    $$$$$:   79-block 11
+    $$$$$:   79-block 12
+call   22 never executed
+        3:   80:}
+------------------

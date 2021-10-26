@@ -1,2 +1,0 @@
-/usr/bin/ar qc libGraphProperties_lib.a CMakeFiles/GraphProperties_lib.dir/DataReader.cpp.o
-/usr/bin/ranlib libGraphProperties_lib.a

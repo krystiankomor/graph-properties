@@ -1,1 +1,0 @@
-/usr/bin/c++ --coverage -g CMakeFiles/GraphProperties_run.dir/main.cpp.o -o GraphProperties_run  GraphProperties_lib/libGraphProperties_lib.a 

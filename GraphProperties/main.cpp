@@ -9,21 +9,6 @@ using namespace std;
 
 bool isDebug = true;
 
-struct VertexWithVisitInfo {
-    unsigned int vertex = 0;
-    bool isVisited = false;
-
-    bool operator<(const VertexWithVisitInfo &other) const {
-        if (vertex < other.vertex)
-            return true;
-
-        if (vertex > other.vertex)
-            return false;
-
-        return vertex < other.vertex;
-    }
-};
-
 struct Edge {
     unsigned int startVertex = 0;
     unsigned int stopVertex = 0;

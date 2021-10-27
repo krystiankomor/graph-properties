@@ -50,6 +50,10 @@ void printResult(const vector<TestKit> &testKits);
 
 bool isTestKitBipartite(const TestKit &testKit);
 
+bool isTestKitConsistent(const TestKit &testKit);
+
+unsigned int getTestKitCoherence(const TestKit &testKit);
+
 map<unsigned int, set<unsigned int>> getNeighbors(const vector<Edge> &edges);
 
 vector<unsigned int> getAllUniqueVertexes(const vector<Edge> &edges);
@@ -67,21 +71,25 @@ int main() {
 
     for (TestKit& testKit : testKits) {
         testKit.isBipartite = isTestKitBipartite(testKit);
+        testKit.isConsistent = isTestKitConsistent(testKit);
+        testKit.coherence = getTestKitCoherence(testKit);
     }
 
     printResult(testKits);
 
-    auto neighbors = getNeighbors(testKits[0].edges);
+    /*for (const TestKit &testKit : testKits) {
+        auto neighbors = getNeighbors(testKit.edges);
 
-//    for (auto n: neighbors) {
-//        cout << "neighbor key: " << n.first << " values: ";
-//
-//        for (auto v: n.second) {
-//            cout << v << " ";
-//        }
-//
-//        cout << endl;
-//    }
+        for (const auto &n: neighbors) {
+            cout << "neighbor key: " << n.first << " values: ";
+
+            for (auto v: n.second) {
+                cout << v << " ";
+            }
+
+            cout << endl;
+        }
+    }*/
 
     return 0;
 }
@@ -198,6 +206,91 @@ bool isTestKitBipartite(const TestKit &testKit) {
     }
 
     return true;
+}
+
+bool isTestKitConsistent(const TestKit &testKit) {
+    unsigned int visitedVertexesCount = 0;
+    const vector<Edge> &edges = testKit.edges;
+    map<unsigned int, set<unsigned int>> neighbors = getNeighbors(edges);
+    vector<unsigned int> uniqueVertexes = getAllUniqueVertexes(edges);
+    map<unsigned int, bool> visitedVertexes;
+    queue<unsigned int> q;
+
+    for (const unsigned int v : uniqueVertexes) {
+        visitedVertexes.insert(pair<unsigned int, bool>(v, false));
+    }
+
+    unsigned int firstVertex = uniqueVertexes[0];
+
+    visitedVertexes[firstVertex] = true;
+    q.push(firstVertex);
+
+    while (!q.empty()) {
+        unsigned int temp = q.front();
+        q.pop();
+        visitedVertexesCount++;
+
+        set<unsigned int> nextNeighbors;
+
+        if (neighbors.count(temp) > 0) {
+            nextNeighbors = neighbors.at(temp);
+        }
+
+        for (const unsigned neighbor : nextNeighbors) {
+            bool &isVisited = visitedVertexes[neighbor];
+
+            if (!isVisited) {
+                isVisited = true;
+                q.push(neighbor);
+            }
+        }
+    }
+
+    return visitedVertexesCount == uniqueVertexes.size();
+}
+
+unsigned int getTestKitCoherence(const TestKit &testKit) {
+    unsigned int coherence = 0;
+    const vector<Edge> &edges = testKit.edges;
+    map<unsigned int, set<unsigned int>> neighbors = getNeighbors(edges);
+    vector<unsigned int> uniqueVertexes = getAllUniqueVertexes(edges);
+    map<unsigned int, unsigned int> vertexesCoherence;
+    queue<unsigned int> q;
+
+    for (const unsigned int v : uniqueVertexes) {
+        vertexesCoherence.insert(pair<unsigned int, unsigned int>(v, 0));
+    }
+
+    for (auto &vertex : uniqueVertexes) {
+        if (vertexesCoherence[vertex]) {
+            continue;
+        }
+
+        q.push(vertex);
+        vertexesCoherence[vertex] = ++coherence;
+
+        while (!q.empty()) {
+            unsigned int temp = q.front();
+            q.pop();
+
+            set<unsigned int> nextNeighbors;
+
+            if (neighbors.count(temp) > 0) {
+                nextNeighbors = neighbors.at(temp);
+            }
+
+            for (const unsigned neighbor: nextNeighbors) {
+                unsigned int &vertexCoherence = vertexesCoherence[neighbor];
+
+                if (!vertexCoherence) {
+                    q.push(neighbor);
+                    vertexCoherence = coherence;
+                }
+            }
+        }
+    }
+
+    return coherence;
 }
 
 map<unsigned int, set<unsigned int>> getNeighbors(const vector<Edge> &edges) {

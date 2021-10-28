@@ -4,6 +4,7 @@
 #include <set>
 #include <map>
 #include <queue>
+#include <stack>
 
 using namespace std;
 
@@ -54,6 +55,8 @@ bool isTestKitConsistent(const TestKit &testKit);
 
 unsigned int getTestKitCoherence(const TestKit &testKit);
 
+bool isTestKitCycled(const TestKit &testKit);
+
 map<unsigned int, set<unsigned int>> getNeighbors(const vector<Edge> &edges);
 
 vector<unsigned int> getAllUniqueVertexes(const vector<Edge> &edges);
@@ -73,6 +76,7 @@ int main() {
         testKit.isBipartite = isTestKitBipartite(testKit);
         testKit.isConsistent = isTestKitConsistent(testKit);
         testKit.coherence = getTestKitCoherence(testKit);
+        testKit.hasCycles = isTestKitCycled(testKit);
     }
 
     printResult(testKits);
@@ -291,6 +295,50 @@ unsigned int getTestKitCoherence(const TestKit &testKit) {
     }
 
     return coherence;
+}
+
+bool isTestKitCycled(const TestKit &testKit) {
+    const vector<Edge> &edges = testKit.edges;
+    map<unsigned int, set<unsigned int>> neighbors = getNeighbors(edges);
+    vector<unsigned int> uniqueVertexes = getAllUniqueVertexes(edges);
+    map<unsigned int, bool> visitedVertexes;
+    stack<long> s;
+
+    for (const unsigned int v : uniqueVertexes) {
+        visitedVertexes.insert(pair<unsigned int, bool>(v, false));
+    }
+
+    unsigned int firstVertex = uniqueVertexes.at(0);
+    visitedVertexes[firstVertex] = true;
+
+    s.push(firstVertex);
+    s.push(firstVertex - 1);
+
+    while (!s.empty()) {
+        long entryVertex = s.top();
+        s.pop();
+        long currentVertex = s.top();
+        s.pop();
+
+        set<unsigned int> nextNeighbors;
+
+        if (neighbors.count(currentVertex) > 0) {
+            nextNeighbors = neighbors.at(currentVertex);
+        }
+
+        for (const unsigned neighbor: nextNeighbors) {
+            if (!visitedVertexes[neighbor]) {
+                s.push(neighbor);
+                s.push(currentVertex);
+                visitedVertexes[neighbor] = true;
+            } else if (neighbor != entryVertex) {
+
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 map<unsigned int, set<unsigned int>> getNeighbors(const vector<Edge> &edges) {

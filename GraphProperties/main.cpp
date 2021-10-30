@@ -8,8 +8,6 @@
 
 using namespace std;
 
-bool isDebug = true;
-
 struct Edge {
     unsigned int startVertex = 0;
     unsigned int stopVertex = 0;
@@ -31,7 +29,6 @@ struct Edge {
 
 struct TestKit {
     unsigned int number = 0;
-    unsigned int numberOfVertices = 0;
     unsigned int numberOfEdges = 0;
     unsigned int coherence = 0;
     bool isBipartite = false;
@@ -65,35 +62,18 @@ int main() {
     vector<unsigned int> data;
     vector<TestKit> testKits;
 
-    if (isDebug) {
-        cout << "Ready for input" << endl;
-    }
-
     data = readData();
     testKits = getTestKitsFromData(data);
 
-    for (TestKit& testKit : testKits) {
+    for (TestKit &testKit: testKits) {
         testKit.isBipartite = isTestKitBipartite(testKit);
         testKit.isConsistent = isTestKitConsistent(testKit);
         testKit.coherence = getTestKitCoherence(testKit);
         testKit.hasCycles = isTestKitCycled(testKit);
+        testKit.isTree = testKit.isConsistent && !testKit.hasCycles;
     }
 
     printResult(testKits);
-
-    /*for (const TestKit &testKit : testKits) {
-        auto neighbors = getNeighbors(testKit.edges);
-
-        for (const auto &n: neighbors) {
-            cout << "neighbor key: " << n.first << " values: ";
-
-            for (auto v: n.second) {
-                cout << v << " ";
-            }
-
-            cout << endl;
-        }
-    }*/
 
     return 0;
 }
@@ -104,10 +84,6 @@ vector<unsigned int> readData() {
 
     while (cin >> number) {
         inputData.push_back(number);
-
-        if (isDebug) {
-            cout << number << endl;
-        }
     }
 
     return inputData;
@@ -120,21 +96,11 @@ vector<TestKit> getTestKitsFromData(const vector<unsigned int> &data) {
     auto dataIterator = data.begin();
     numberOfTestKits = *dataIterator++;
 
-    if (isDebug) {
-        cout << "Number of test kits: " << numberOfTestKits << endl;
-    }
-
     for (auto testKitNumber = 1; testKitNumber <= numberOfTestKits; testKitNumber++) {
         TestKit testKit;
         testKit.number = testKitNumber;
-        testKit.numberOfVertices = *dataIterator++;
+        *dataIterator++; // skip number of vertices
         testKit.numberOfEdges = *dataIterator++;
-
-        if (isDebug) {
-            cout << "Test kit no." << testKitNumber << endl;
-            cout << "Vertices: " << testKit.numberOfVertices << endl;
-            cout << "Edges: " << testKit.numberOfEdges << endl;
-        }
 
         for (auto i = 0; i < testKit.numberOfEdges; i++) {
             Edge edge;
@@ -143,8 +109,6 @@ vector<TestKit> getTestKitsFromData(const vector<unsigned int> &data) {
 
             testKit.edges.push_back(edge);
         }
-
-//        sort(testKit.edges.begin(), testKit.edges.end(), less<>());
 
         testKits.push_back(testKit);
     }
@@ -167,14 +131,14 @@ string getPolishBool(const bool &boolValue) {
 }
 
 bool isTestKitBipartite(const TestKit &testKit) {
-    // -1 biały, 0 szary, 1 czarny
+    // -1 white, 0 gray, 1 black
     const vector<Edge> &edges = testKit.edges;
     map<unsigned int, set<unsigned int>> neighbors = getNeighbors(edges);
     vector<unsigned int> uniqueVertexes = getAllUniqueVertexes(edges);
     map<unsigned int, int> visitedVertexes;
     queue<unsigned int> q;
 
-    for (const unsigned int v : uniqueVertexes) {
+    for (const unsigned int v: uniqueVertexes) {
         visitedVertexes.insert(pair<unsigned int, int>(v, -1));
     }
 
@@ -193,7 +157,7 @@ bool isTestKitBipartite(const TestKit &testKit) {
             nextNeighbors = neighbors.at(temp);
         }
 
-        for (const unsigned neighbor : nextNeighbors) {
+        for (const unsigned neighbor: nextNeighbors) {
             const int color = visitedVertexes[neighbor];
 
             if (color == visitedVertexes[temp]) {
@@ -220,7 +184,7 @@ bool isTestKitConsistent(const TestKit &testKit) {
     map<unsigned int, bool> visitedVertexes;
     queue<unsigned int> q;
 
-    for (const unsigned int v : uniqueVertexes) {
+    for (const unsigned int v: uniqueVertexes) {
         visitedVertexes.insert(pair<unsigned int, bool>(v, false));
     }
 
@@ -240,7 +204,7 @@ bool isTestKitConsistent(const TestKit &testKit) {
             nextNeighbors = neighbors.at(temp);
         }
 
-        for (const unsigned neighbor : nextNeighbors) {
+        for (const unsigned neighbor: nextNeighbors) {
             bool &isVisited = visitedVertexes[neighbor];
 
             if (!isVisited) {
@@ -261,11 +225,11 @@ unsigned int getTestKitCoherence(const TestKit &testKit) {
     map<unsigned int, unsigned int> vertexesCoherence;
     queue<unsigned int> q;
 
-    for (const unsigned int v : uniqueVertexes) {
+    for (const unsigned int v: uniqueVertexes) {
         vertexesCoherence.insert(pair<unsigned int, unsigned int>(v, 0));
     }
 
-    for (auto &vertex : uniqueVertexes) {
+    for (auto &vertex: uniqueVertexes) {
         if (vertexesCoherence[vertex]) {
             continue;
         }
@@ -304,7 +268,7 @@ bool isTestKitCycled(const TestKit &testKit) {
     map<unsigned int, bool> visitedVertexes;
     stack<long> s;
 
-    for (const unsigned int v : uniqueVertexes) {
+    for (const unsigned int v: uniqueVertexes) {
         visitedVertexes.insert(pair<unsigned int, bool>(v, false));
     }
 
